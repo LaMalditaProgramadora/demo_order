@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8"></meta>
+
+<title>Orders</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+		<label class="label">Orders</label>
+		<table class="table">
+			<thead>
+				<tr>
+					<th >Id</th>
+					<th>Paid</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="o: ${listOrders}">
+					<th th:text="${o.id}"></th>
+					<td th:text="${o.paid}"></td>
+				</tr>
+			</tbody>
+		</table>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

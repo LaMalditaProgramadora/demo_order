@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+<meta charset="UTF-8"></meta>
+
+<title>Products</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+</head>
+
+<body>
+
+	<div th:replace="fragments/header :: header"></div>
+	<div class="container">
+	<label class="label">Cart</label>
+		<table class="table">
+			<thead>
+				<tr>
+					<th >Id</th>
+					<th>Product</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr th:each="od: ${listOrdersDetail}">
+					<th th:text="${od.id}"></th>
+					<td th:text="${od.product.name}"></td>
+					<td th:text="${od.quantity}"></td>
+				</tr>
+			</tbody>
+		</table>
+		<a th:href="@{/order/pay}">Pay</a>
+	</div>
+	<div th:replace="fragments/footer :: footer"></div>
+</body>
+</html>

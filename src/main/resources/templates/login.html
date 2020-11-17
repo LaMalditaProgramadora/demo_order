@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="thymeleaf.org">
+<head>
+<meta charset="UTF-8"></meta>
+<title>Registrar Credenciales</title>
+
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+
+</head>
+<body>
+
+	<section class="hero is-primary is-fullheight">
+		<div class="hero-body">
+			<div class="container">
+				<div class="columns is-centered">
+					<div class="column is-5-tablet is-4-desktop is-3-widescreen">
+					
+						<form class="box" th:action="@{/login}" method="post" th:object="${user}">
+							<div class="field">
+								<label for="" class="label">Username</label>
+								<div class="control has-icons-left">
+									<input placeholder="username" class="form-control"
+										required th:field="*{username}"> <span class="icon is-small is-left">
+										<i class="fa fa-envelope"></i>
+									</span>
+								</div>
+							</div>
+							<div class="field">
+								<label for="" class="label">Password</label>
+								<div class="control has-icons-left">
+									<input type="password" placeholder="*******" class="form-control"
+										required th:field="*{password}"> <span class="icon is-small is-left">
+										<i class="fa fa-lock"></i>
+									</span>
+								</div>
+							</div>
+							<div class="field">
+								<button type="submit" class="button is-success">Login</button>
+							</div>
+						</form>
+						
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+
+</body>
+</html>

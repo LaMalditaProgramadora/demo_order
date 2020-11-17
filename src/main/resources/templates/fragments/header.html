@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+<head>
+<meta charset="UTF-8"></meta>
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+</head>
+
+<body>
+	<div th:fragment="header">
+		<nav class="navbar" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<a class="navbar-item"> <img
+					src="https://bit.ly/2Kg1p6r" width="28" height="28">
+				</a> <a role="button" class="navbar-burger burger" aria-label="menu"
+					aria-expanded="false" data-target="navbarBasicExample"> <span
+					aria-hidden="true"></span> <span aria-hidden="true"></span> <span
+					aria-hidden="true"></span>
+				</a>
+			</div>
+
+			<div id="navbarBasicExample" class="navbar-menu">
+				<div class="navbar-start">
+					<a class="navbar-item" th:href="@{/product/listProducts}">
+						Products </a> <a class="navbar-item" th:href="@{/order/listActualOrder}"> Cart </a> <a
+						class="navbar-item" th:href="@{/order/listOrders}"> Orders </a>
+				</div>
+				<div class="navbar-end">
+					<div class="navbar-item">
+						<div class="buttons">
+							<a class="button is-primary" th:object="${userSession}"> <strong th:text="${userSession.username}" ></strong></a>
+						</div>
+					</div>
+				</div>
+			</div>
+		</nav>
+	</div>
+
+</body>
+
+</html>
