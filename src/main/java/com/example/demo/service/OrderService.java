@@ -11,4 +11,8 @@ public interface OrderService {
 	public void createFirstOrder(Order order);
 	public void addOrderDetail(OrderDetail orderDetail);
 	public void payOrderActive(Order order);
+	
+	public OrderDetail getOrderDetailById(int id);
+	public void updateOrderDetailQuantity(int id, int quantity);
+	public List<OrderDetail> listActualOrderOrderByOrderDetailId(int userId);
 }

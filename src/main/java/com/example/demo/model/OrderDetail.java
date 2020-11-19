@@ -21,6 +21,10 @@ public class OrderDetail {
 	@Column(name = "quantity")
 	private int quantity;
 	
+	public double subtotal() {
+		return this.quantity * this.product.getPrice();
+	}
+	
 	@ManyToOne
 	@JoinColumn(name = "id_product")
 	private Product product;

@@ -42,12 +42,15 @@ public class OrderController {
 	@RequestMapping("/listActualOrder") // Cart
 	public String listActualOrder(Map<String, Object> model, @ModelAttribute("userSession") User userSession) {
 		Order orderAux = orderService.listActualOrder(userSession.getId());
-		model.put("listOrdersDetail", orderAux.getOrdersDetails());
+		model.put("listOrdersDetail", orderService.listActualOrderOrderByOrderDetailId(userSession.getId()));
 		return "listOrdersDetail";
 	}
 	
 	@RequestMapping("/addToActualOrder") // Cart
-	public String addToActualOrder(Map<String, Object> model, @ModelAttribute("userSession") User userSession, @RequestParam(value = "productId") Integer productId) {
+	public String addToActualOrder(Map<String, Object> model,
+			@ModelAttribute("userSession") User userSession,
+			@RequestParam(value = "productId") Integer productId) {
+		
 		Order orderAux = orderService.listActualOrder(userSession.getId());
 		OrderDetail orderDetailAux = new OrderDetail();
 		Product productAux = productService.listById(productId);
@@ -58,7 +61,7 @@ public class OrderController {
 		
 		orderService.addOrderDetail(orderDetailAux);
 		
-		model.put("listOrdersDetail", orderAux.getOrdersDetails());
+		model.put("listOrdersDetail", orderService.listActualOrderOrderByOrderDetailId(userSession.getId()));
 		return "listOrdersDetail";
 	}
 	
@@ -66,9 +69,30 @@ public class OrderController {
 	public String pay(Map<String, Object> model, @ModelAttribute("userSession") User userSession) {
 		Order orderAux = orderService.listActualOrder(userSession.getId());
 		orderService.payOrderActive(orderAux);		
-		System.out.print("Llegó aquí");
 		orderAux = orderService.listActualOrder(userSession.getId());
-		model.put("listOrdersDetail", orderAux.getOrdersDetails());
+		model.put("listOrdersDetail", orderService.listActualOrderOrderByOrderDetailId(userSession.getId()));
+		return "listOrdersDetail";
+	}
+	
+	@RequestMapping("/add1") // Cart
+	public String add1(Map<String, Object> model,
+			@ModelAttribute("userSession") User userSession,
+			@RequestParam(value = "odId") Integer odId) {
+		
+		OrderDetail orderDetailAux = orderService.getOrderDetailById(odId);
+		orderService.updateOrderDetailQuantity(odId, orderDetailAux.getQuantity() + 1);
+		model.put("listOrdersDetail", orderService.listActualOrderOrderByOrderDetailId(userSession.getId()));
+		return "listOrdersDetail";
+	}
+	
+	@RequestMapping("/remove1") // Cart
+	public String remove1(Map<String, Object> model,
+			@ModelAttribute("userSession") User userSession,
+			@RequestParam(value = "odId") Integer odId) {
+				
+		OrderDetail orderDetailAux = orderService.getOrderDetailById(odId);
+		orderService.updateOrderDetailQuantity(odId, orderDetailAux.getQuantity() - 1);
+		model.put("listOrdersDetail", orderService.listActualOrderOrderByOrderDetailId(userSession.getId()));
 		return "listOrdersDetail";
 	}
 }

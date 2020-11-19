@@ -26,6 +26,7 @@ public class ProductController {
 	@RequestMapping("/listProducts")
 	public String listProducts(Map<String, Object> model) {
 		model.put("listProducts", productService.listProducts());
+		model.put("quantity", 1);
 		return "listProducts";
 	}
 }

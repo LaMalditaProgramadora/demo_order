@@ -23,6 +23,9 @@
 					<th >Id</th>
 					<th>Product</th>
 					<th>Quantity</th>
+					<th>Subtotal</th>
+					<th>Remove</th>
+					<th>Add</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -30,6 +33,9 @@
 					<th th:text="${od.id}"></th>
 					<td th:text="${od.product.name}"></td>
 					<td th:text="${od.quantity}"></td>
+					<td th:text="${od.subtotal()}"></td>
+					<td><a th:href="@{/order/remove1(odId=${od.id})}">-</a></td>
+					<td><a th:href="@{/order/add1(odId=${od.id})}">+</a></td>
 				</tr>
 			</tbody>
 		</table>

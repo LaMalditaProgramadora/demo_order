@@ -31,7 +31,7 @@
 					<th th:text="${product.id}" ></th>
 					<td th:text="${product.name}" ></td>
 					<td th:text="${product.price}" ></td>
-					<td> <a th:href="@{/order/addToActualOrder?productId=}+${product.id}">+</a></td>
+					<td> <a th:href="@{/order/addToActualOrder(productId=${product.id})}">+</a></td>
 				</tr>
 			</tbody>
 		</table>

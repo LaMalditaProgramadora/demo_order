@@ -29,7 +29,14 @@ public class OrderServiceImpl implements OrderService {
 	public Order listActualOrder(int userId) {
 		return orderRepository.findByPaidAndUserId(false, userId);
 	}
-
+	
+	@Override
+	public List<OrderDetail> listActualOrderOrderByOrderDetailId(int userId) {
+		Order orderAux = orderRepository.findByPaidAndUserId(false, userId);
+		List<OrderDetail> orderDetailsList = orderDetailRepository.findByOrderIdOrderById(orderAux.getId());
+		return orderDetailsList;
+	}
+	
 	@Override
 	public void addOrderDetail(OrderDetail orderDetail) {
 		orderDetailRepository.save(orderDetail);
@@ -49,6 +56,19 @@ public class OrderServiceImpl implements OrderService {
 		orderAux.setPaid(false);
 		orderAux.setUser(order.getUser());
 		orderRepository.save(orderAux);
+	}
+
+	@Override
+	public OrderDetail getOrderDetailById(int id) {
+		OrderDetail orderDetailAux = orderDetailRepository.findById(id).get();
+		return orderDetailAux;
+	}
+
+	@Override
+	public void updateOrderDetailQuantity(int id, int quantity) {
+		OrderDetail orderDetailAux = orderDetailRepository.findById(id).get();
+		orderDetailAux.setQuantity(quantity);
+		orderDetailRepository.save(orderDetailAux);
 	}
 	
 }
